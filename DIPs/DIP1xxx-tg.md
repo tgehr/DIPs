@@ -103,14 +103,14 @@ auto (a, (b, c)) = tuple(1, tuple("2", 3.0));
 In a pattern where at least one component specifies a type, each component needs to specify a type or at least one storage class:
 
 ```d
-(int a, b) = (1, "2"); // error
-(int a, auto b) = (1, "2"); // ok
+(int a, b) = tuple(1, "2"); // error
+(int a, auto b) = tuple(1, "2"); // ok
 
-(int a, (b, c)) = (1, ("2", 3.0)); // error
-(int a, auto (b, c)) = (1, ("2", 3.0)); // ok
-(int a, (auto b, auto c)) = (1, ("2", 3.0)); // ok
+(int a, (b, c)) = tuple(1, tuple("2", 3.0)); // error
+(int a, auto (b, c)) = tuple(1, tuple("2", 3.0)); // ok
+(int a, (auto b, auto c)) = tuple(1, tuple("2", 3.0)); // ok
 
-auto (a, immutable b, c) = (1, "2", 3.0); // ok (restriction does not apply to storage classes)
+auto (a, immutable b, c) = tuple(1, "2", 3.0); // ok (restriction does not apply to storage classes)
 ```
 
 This proposal is independent of whether or not built-in tuple syntax is added.
